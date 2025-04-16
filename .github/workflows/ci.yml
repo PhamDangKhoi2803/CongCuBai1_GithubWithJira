@@ -43,3 +43,7 @@ jobs:
             }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      - name: Send Slack notification
+        run: |
+          curl -X POST -H 'Content-type: application/json' --data '{"text":"✅ Issue *${{ steps.extract.outputs.ISSUE_KEY }}* đã được đóng sau khi merge PR!"}' ${{ secrets.SLACK_WEBHOOK_URL }}
+
